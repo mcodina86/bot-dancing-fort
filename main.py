@@ -49,11 +49,8 @@ def createGif():
         background.save(HOME_PATH + "/images/temp/bg_" + y + ".png")
         tempImage = Image.open(HOME_PATH + "/images/temp/bg_" + y + ".png")
         images.append(tempImage)
-    # background.show()
-    # images = [Image.open(image) for image in glob.glob(HOME_PATH + "/images/temp/*")]
     filename = HOME_PATH + "/images/test.gif"
     gifcreator.writeGif(filename, images, duration=0.1)
-    return "HOLA"
 
 def getApi():
     cfg = config.getTwitterKeys()
@@ -73,5 +70,6 @@ def main():
     createGif()
     sendTweet(address)
 
-# print "La latitud y la longitud son: " + lat_lon + " en el pais " + ELEGIDO
-main()
+
+if __name__ == "__main__":
+    main()
