@@ -33,15 +33,15 @@ def point_inside_polygon(x, y, poly):
     return inside
 
 def getImage(country):
+    HOME_PATH = os.path.dirname(os.path.realpath(__file__))
     API_KEY = config.getKey()
     GOOGLE_URL = ("http://maps.googleapis.com/maps/api/streetview?sensor=false&"
                   "size=640x640&key=" + API_KEY)
-
     IMG_PREFIX = "img_"
     IMG_SUFFIX = ".jpg"
 
     print "Loading borders"
-    shape_file = "TM_WORLD_BORDERS-0.3.shp"
+    shape_file = HOME_PATH + "/TM_WORLD_BORDERS-0.3.shp"
     if not os.path.exists(shape_file):
         print("Cannot find " + shape_file + ". Please download it from "
               "http://thematicmapping.org/downloads/world_borders.php "
@@ -80,7 +80,7 @@ def getImage(country):
                 country_hits += 1
                 lat_lon = str(rand_lat) + "," + str(rand_lon)
                 outfile = os.path.join(
-                    'images', IMG_PREFIX + 'test' + IMG_SUFFIX)
+                    HOME_PATH + '/images', IMG_PREFIX + 'test' + IMG_SUFFIX)
                 url = GOOGLE_URL + "&location=" + lat_lon
                 try:
                     urllib.urlretrieve(url, outfile)
